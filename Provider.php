@@ -32,6 +32,10 @@ class Provider extends AbstractProvider
                     'method'    => 'GET',
                     'path'      => '/me',
                 ],
+                [
+                    'method'    => 'GET',
+                    'path'      => '/domain*',
+                ]
             ],
             $this->redirectUrl.'?state='.$state
         );
