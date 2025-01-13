@@ -30,11 +30,19 @@ class Provider extends AbstractProvider
             [
                 [
                     'method'    => 'GET',
-                    'path'      => '/me',
+                    'path'      => '*',
                 ],
                 [
-                    'method'    => 'GET',
-                    'path'      => '/domain*',
+                    'method'    => 'POST',
+                    'path'      => '*',
+                ],
+                [
+                    'method'    => 'PUT',
+                    'path'      => '*',
+                ],
+                [
+                    'method'    => 'DELETE',
+                    'path'      => '*',
                 ]
             ],
             $this->redirectUrl.'?state='.$state
