@@ -21,9 +21,9 @@
         "docs": "https://socialiteproviders.com/ovh"
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "ext-json": "*",
-        "ovh/ovh": "^2.0",
+        "ovh/ovh": "^3.4.0",
         "socialiteproviders/manager": "^4.4"
     },
     "autoload": {
