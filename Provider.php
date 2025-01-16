@@ -2,6 +2,7 @@
 
 namespace SocialiteProviders\Ovh;
 
+use Filament\Facades\Filament;
 use Ovh\Api as Ovh;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
@@ -26,6 +27,7 @@ class Provider extends AbstractProvider
             $this->getConfig('endpoint')
         );
 
+
         $request = $ovh->requestCredentials(
             [
                 [
@@ -45,8 +47,9 @@ class Provider extends AbstractProvider
                     'path'      => '*',
                 ]
             ],
-            $this->redirectUrl.'?state='.$state
+            str_replace('{tenant}', $this->request->session()->get('tenant'), $this->redirectUrl) . '?state=' . $state
         );
+
 
         $this->request->session()->flash($state, $request['consumerKey']);
 
@@ -71,7 +74,7 @@ class Provider extends AbstractProvider
         ];
     }
 
-    protected function getTokenUrl(): string
+    protected function getTokenUrl(): ?string
     {
         return null;
     }
@@ -88,7 +91,12 @@ class Provider extends AbstractProvider
             $token
         );
 
-        return $ovh->get('/me');
+        $expiration = $ovh->get('/auth/currentCredential')['expiration'];
+
+        return array_merge(
+            $ovh->get('/me'),
+            ['expiration' => $expiration]
+        );
     }
 
     /**
