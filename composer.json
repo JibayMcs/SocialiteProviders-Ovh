@@ -23,7 +23,7 @@
     "require": {
         "php": "^8.2",
         "ext-json": "*",
-        "ovh/ovh": "^3.4.0",
+        "ovh/ovh": "^v3.4.0",
         "socialiteproviders/manager": "^4.4"
     },
     "autoload": {
